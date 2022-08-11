@@ -1,5 +1,12 @@
 #!/bin/bash
 
 
+# moving the original vimrc to created backup folder
+
+mkdir /usr/share/vim/backup
+mv /usr/share/vim/vimrc /usr/share/vim/backup
+
+# copy the vimrc from this file to vim folder
+
 cp vimrc /usr/share/vim
 echo "Done"
