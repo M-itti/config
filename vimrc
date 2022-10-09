@@ -58,16 +58,13 @@ noremap l k
 noremap k j
 noremap j h
 
+noremap <s-k> }
+noremap <s-l> {
+
 set tabstop=4
 :set noswapfile
 set expandtab
 set autoindent
-
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
 
 :set hlsearch
 :set incsearch
@@ -80,4 +77,4 @@ set shiftwidth=4
 set number
 filetype plugin indent on
 
-:colorscheme evening
+
