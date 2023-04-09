@@ -10,3 +10,5 @@ alias bt="bluetoothctl"
 alias ls='ls --color=auto'
 
 export PS1='mahdi@Immortal\[\e[31m\] \w $(__git_ps1 "(%s)")\[\033[00m\] '
+
+[[ $TERM != "screen" ]] && exec tmux
