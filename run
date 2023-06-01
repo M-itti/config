@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# to set it as config use "Source run"
+
 var="102.31.191.104"
 
 export http_proxy="http://$var:10809"  # updated
