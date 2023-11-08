@@ -72,7 +72,7 @@ set tabstop=4
 
 set ai
 
-
+set clipboard=unnamedplus
 set shiftwidth=4
 set number
 filetype plugin indent on
