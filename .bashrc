@@ -5,6 +5,7 @@ export LSCOLORS=cxgxfxexbxegedabagacad
 
 export EDITOR='vim'
 
+alias grep='grep --color=auto'
 alias bt="bluetoothctl"
 alias ls='ls --color=auto'
 alias setting="gnome-control-center"
