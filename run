@@ -1,29 +1,12 @@
 #!/bin/bash
 
-# to set it as config use "Source run"
 
-var="102.31.191.104"
+# moving the original vimrc to created backup folder
 
-export http_proxy="http://$var:10809"  # updated
-export https_proxy="http://$var:10809"  # updated
-export socks_proxy="http://$var:10809"  # updated
-export all_proxy="http://$var:10809"  # updated
+mkdir /tmp/backup
+mv /usr/share/vim/vimrc /tmp/backup
 
-export ALL_PROXY="http://$var:10809"  # updated
-export HTTP_PROXY="http://$var:10809"  # updated
-export HTTPS_PROXY="http://$var:10809"  # updated
-export SOCKS_PROXY="http://$var:10809"  # updated
+# copy the vimrc from this file to vim folder
 
-set http_proxy="http://$var:10809"  # updated
-set https_proxy=http://$var:10809  # updated
-set socks_proxy=http://$var:10809  # updated
-set all_proxy=http://$var:10809  # updated
-
-set ALL_PROXY=http://$var:10809  # updated
-set HTTP_PROXY=http://$var:10809  # updated
-set HTTPS_PROXY=http://$var:10809  # updated
-set SOCKS_PROXY=http://$var:10809  # updated
-
-#pip install -vvv -U flask --proxy=socks5://102.59.118.55:10809
-
-curl -vvv ipinfo.io/ip --proxy http://$var:10809
+cp vimrc /usr/share/vim
+echo "Done"
