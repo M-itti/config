@@ -5,32 +5,25 @@ export LSCOLORS=cxgxfxexbxegedabagacad
 
 export EDITOR='vim'
 
-alias grep='grep --color=auto'
 alias bt="bluetoothctl"
+
 alias ls='ls --color=auto'
-alias setting="gnome-control-center"
+alias l='ls --color=auto'
 
-alias pip="python3.10 -m pip"
+export PS1='mahdi@Immortal\[\e[31m\] \w $(__git_ps1 "(%s)")\[\033[00m\] '
 
-export PS1='mahdi@Immortal\[\e[32m\] \w $(__git_ps1 "(%s)")\[\033[00m\] '
+[[ $TERM != "screen" ]] && exec tmux
 
-#export http_proxy=http://127.0.0.1:10809/
-#export https_proxy=http://127.0.0.1:10809/
 
-#export HTTP_PROXY=http://127.0.0.1:10809/
-#export HTTPS_PROXY=http://127.0.0.1:10809/
-
-# ignoring proxies:
-export no_proxy="google.com"
+# personalized socks config (all_proxy added)
 
 unset http_proxy
 unset https_proxy
 unset socks_proxy
-unset all_proxy # updated
+unset all_proxy # added
 
 unset HTTP_PROXY
 unset HTTPS_PROXY
 unset SOCKS_PROXY
-unset ALL_PROXY  # updated
-
+unset ALL_PROXY  # added
 
