@@ -9,6 +9,7 @@ alias bt="bluetoothctl"
 
 alias ls='ls --color=auto'
 alias l='ls --color=auto'
+alias share='python3 -m http.server 9000'
 
 export PS1='mahdi@Immortal\[\e[31m\] \w $(__git_ps1 "(%s)")\[\033[00m\] '
 
