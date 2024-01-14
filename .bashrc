@@ -18,6 +18,10 @@ export PS1='mahdi@Immortal\[\e[31m\] \w $(__git_ps1 "(%s)")\[\033[00m\] '
 
 # personalized socks config (all_proxy added)
 
+
+# to set proxy for v2ray
+# export all_proxy=socks5://127.0.0.1:10808
+
 unset http_proxy
 unset https_proxy
 unset socks_proxy
