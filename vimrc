@@ -70,6 +70,7 @@ set autoindent
 :set incsearch
 set tabstop=4
 
+:colorscheme peachpuff
 set ai
 
 set clipboard=unnamedplus
