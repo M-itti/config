@@ -6,7 +6,7 @@ export LSCOLORS=cxgxfxexbxegedabagacad
 export EDITOR='vim'
 
 alias bt="bluetoothctl"
-
+alias grep='grep --color=auto'
 alias ls='ls --color=auto'
 alias l='ls --color=auto'
 alias share='python3 -m http.server 9000'

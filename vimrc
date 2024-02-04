@@ -68,6 +68,7 @@ set autoindent
 
 :set hlsearch
 :set incsearch
+:set paste
 set tabstop=4
 
 :colorscheme peachpuff
