@@ -16,10 +16,14 @@ alias g++='clang++ -std=c++17 -O0'
 
 export PS1='mahdi@Timeless\[\e[31m\] \w $(__git_ps1 "(%s)")\[\033[00m\] '
 
-[[ $TERM != "screen" ]] && exec tmux
+#[[ $TERM != "screen" ]] && exec tmux
 
 
 # personalized socks config (all_proxy added)
 
 #export all_proxy=socks5://127.0.0.1:10808
-unset all_proxy
+#!/bin/bash
+
+unset http_proxy HTTP_PROXY https_proxy HTTPS_PROXY ftp_proxy FTP_PROXY socks_proxy SOCKS_PROXY all_proxy ALL_PROXY
+
+
