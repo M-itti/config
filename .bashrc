@@ -5,6 +5,9 @@ export LSCOLORS=cxgxfxexbxegedabagacad
 
 export EDITOR='vim'
 
+export PATH="$PATH:/home/mahdi/.local/bin"
+
+
 alias bt="bluetoothctl"
 alias grep='grep --color=auto'
 alias ls='ls --color=auto'

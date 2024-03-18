@@ -9,4 +9,7 @@ mv /usr/share/vim/vimrc /tmp/backup
 # copy the vimrc from this file to vim folder
 
 cp vimrc /usr/share/vim
+sudo apt install -y htop 
+cp htoprc ~/.config/htop 
+
 echo "Done"
