@@ -17,7 +17,7 @@ alias share='python3 -m http.server 9000'
 # g++
 alias g++='clang++ -std=c++17 -O0'
 
-export PS1='mahdi@Timeless\[\e[31m\] \w $(__git_ps1 "(%s)")\[\033[00m\] '
+#export PS1='mahdi@Timeless\[\e[31m\] \w $(__git_ps1 "(%s)")\[\033[00m\] '
 
 #[[ $TERM != "screen" ]] && exec tmux
 

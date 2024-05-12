@@ -27,7 +27,6 @@ endif
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
-"set background=dark
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -53,6 +52,7 @@ if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif
 
+"set background=dark
 noremap ; l
 noremap l k
 noremap k j
@@ -66,16 +66,19 @@ set tabstop=4
 set expandtab
 set autoindent
 
+colorscheme peachpuff
+
 :set hlsearch
 :set incsearch
 set tabstop=4
 
-:colorscheme peachpuff
 set ai
-
 set clipboard=unnamedplus
 set shiftwidth=4
 set number
 filetype plugin indent on
 
+set clipboard=unnamed
+set backspace=indent,eol,start
+set nomodeline
 
