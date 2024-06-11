@@ -1,0 +1,38 @@
+{ #### paste in "users not workplace" settings.json ####
+  "vim.normalModeKeyBindingsNonRecursive": [
+      {
+          "before": ["h"],
+          "after": ["j"]
+      },
+      {
+          "before": ["j"],
+          "after": ["k"]
+      },
+      {
+          "before": ["k"],
+          "after": ["l"]
+      },
+      {
+          "before": ["l"],
+          "after": [";"]
+      }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+      {
+          "before": ["h"],
+          "after": ["j"]
+      },
+      {
+          "before": ["j"],
+          "after": ["k"]
+      },
+      {
+          "before": ["k"],
+          "after": ["l"]
+      },
+      {
+          "before": ["l"],
+          "after": [";"]
+      }
+  ]
+}
