@@ -27,8 +27,8 @@ alias g++='clang++ -std=c++17 -O0'
 
 # personalized socks config (all_proxy added)
 
-export all_proxy=socks5://192.168.253.241:2080
-export all_proxy=socks5://192.168.253.241:2080
+ip_section=$(route get default | grep gateway | awk '{print $2}')
+export all_proxy=socks5://$ip_section:2080
 
 #unset http_proxy HTTP_PROXY https_proxy HTTPS_PROXY ftp_proxy FTP_PROXY socks_proxy SOCKS_PROXY all_proxy ALL_PROXY
 
