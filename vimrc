@@ -78,4 +78,10 @@ set shiftwidth=4
 set number
 filetype plugin indent on
 
+" Enable paste mode when entering insert mode
+augroup PasteMode
+  autocmd!
+  autocmd InsertEnter * set paste
+  autocmd InsertLeave * set nopaste
+augroup END
 

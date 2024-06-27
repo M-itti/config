@@ -66,7 +66,6 @@ set tabstop=4
 set expandtab
 set autoindent
 
-colorscheme peachpuff
 
 :set hlsearch
 :set incsearch
@@ -81,4 +80,13 @@ filetype plugin indent on
 set clipboard=unnamed
 set backspace=indent,eol,start
 set nomodeline
+highlight Comment ctermfg=lightgray
+
+" Enable paste mode when entering insert mode
+augroup PasteMode
+  autocmd!
+  autocmd InsertEnter * set paste
+  autocmd InsertLeave * set nopaste
+augroup END
+
 
