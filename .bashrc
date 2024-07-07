@@ -9,7 +9,7 @@ export EDITOR='vim'
 
 export PATH="$PATH:/home/mahdi/.local/bin"
 
-alias python='python3.12'
+alias python='python3'
 alias pip='pip3'
 
 alias bt="bluetoothctl"
