@@ -65,7 +65,7 @@ set tabstop=4
 :set noswapfile
 set expandtab
 set autoindent
-
+set smartindent
 
 :set hlsearch
 :set incsearch
@@ -82,11 +82,7 @@ set backspace=indent,eol,start
 set nomodeline
 highlight Comment ctermfg=lightgray
 
-" Enable paste mode when entering insert mode
-augroup PasteMode
-  autocmd!
-  autocmd InsertEnter * set paste
-  autocmd InsertLeave * set nopaste
-augroup END
+" show position of the curser col and row
+set ruler
 
 
