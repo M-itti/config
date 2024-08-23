@@ -85,4 +85,6 @@ highlight Comment ctermfg=lightgray
 " show position of the curser col and row
 set ruler
 
+" fix for typescript crashes
+set re=2
 
