@@ -1,3 +1,5 @@
-#curl --proxy socks5://192.168.64.125:2080 http://ifconfig.me
-curl http://ifconfig.ma
+ip=$(route get default | grep gateway | awk '{print $2}')
+port=2334
+
+curl --proxy socks5://${ip}:${port} http://ifconfig.me
 
