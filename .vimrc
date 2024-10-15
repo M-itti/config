@@ -61,19 +61,19 @@ noremap j h
 noremap <s-k> }
 noremap <s-l> {
 
-set tabstop=4
 :set noswapfile
-set expandtab
 set autoindent
 set smartindent
 
 :set hlsearch
 :set incsearch
+
 set tabstop=4
+set shiftwidth=2
+set expandtab
 
 set ai
 set clipboard=unnamedplus
-set shiftwidth=2
 set number
 filetype plugin indent on
 
@@ -88,3 +88,4 @@ set ruler
 " fix for typescript crashes
 set re=2
 
+autocmd FileType python setlocal tabstop=2 shiftwidth=2 expandtab
