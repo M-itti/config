@@ -1,0 +1,3 @@
+
+# must be explicitly pasted in the session, executing it won't affect
+export VIMINIT="source /tmp/config/vimrc"
