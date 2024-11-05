@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# disable
+networksetup -setwebproxystate Wi-Fi off
+networksetup -setsecurewebproxystate Wi-Fi off
+networksetup -setsocksfirewallproxystate Wi-Fi off
+
+# confirm 
+networksetup -getwebproxy Wi-Fi
+networksetup -getsecurewebproxy Wi-Fi
+networksetup -getsocksfirewallproxy Wi-Fi

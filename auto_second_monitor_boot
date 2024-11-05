@@ -1,0 +1,24 @@
+You can add the xrandr command to your startup applications through the command line using the following steps:
+
+Open a terminal by pressing Ctrl + Alt + T on your keyboard.
+Type the following command to create a new desktop file for your startup application:
+arduino
+Copy code
+sudo nano /usr/share/applications/external-monitor-setup.desktop
+Note: You can replace "external-monitor-setup" with any name you like for your startup application.
+
+In the text editor that opens, paste the following content:
+css
+Copy code
+[Desktop Entry]
+Type=Application
+Name=External Monitor Setup
+Exec=xrandr --output HDMI-1 --mode 1920x1080 --right-of eDP-1 --primary
+Terminal=false
+Press Ctrl + X on your keyboard, then press Y to save changes and Enter to exit nano.
+Make the new desktop file executable with the following command:
+bash
+Copy code
+sudo chmod +x /usr/share/applications/external-monitor-setup.desktop
+Reboot your system or log out and log back in to see the changes take effect.
+Now, every time you start Ubuntu, the xrandr command will be executed automatically, and your external monitor will be configured according to the settings you specified.

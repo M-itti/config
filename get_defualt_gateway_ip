@@ -1,0 +1,3 @@
+#!/bin/bash
+echo $(route get default | grep gateway | awk '{print $2}')
+

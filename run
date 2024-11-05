@@ -1,0 +1,18 @@
+#!/bin/bash
+
+
+# moving the original vimrc to created backup folder
+
+mkdir /tmp/backup
+cp /usr/share/vim/vimrc /tmp/backup
+cp /etc/vim/vimrc /tmp/backup2
+
+
+# copy the vimrc from this file to vim folder
+
+cp vimrc /usr/share/vim
+cp vimrc /etc/vim
+sudo apt install -y htop 
+cp htoprc ~/.config/htop 
+
+echo "Done"

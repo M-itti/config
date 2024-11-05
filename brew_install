@@ -1,0 +1,4 @@
+#!/bin/bash
+PROXY_ADDRESS="http://127.0.0.1:2334"
+http_proxy=$PROXY_ADDRESS https_proxy=$PROXY_ADDRESS 
+echo "proxy is set to session..."
