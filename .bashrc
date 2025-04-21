@@ -1,5 +1,5 @@
 # Change to your name, do not delete backslashes
-#
+
 export PIP_DISABLE_PIP_VERSION_CHECK=1
 
 export CLICOLOR=1
@@ -41,8 +41,9 @@ alias sqlite="sqlite3"
 # zed
 alias ze="zed"
 
-#[[ $TERM != "screen" ]] && exec tmux
-
+# others
+alias g="git"
+alias ls="ls -aG" 
 
 # personalized socks config (all_proxy added)
 
