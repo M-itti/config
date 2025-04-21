@@ -1,0 +1,6 @@
+#!/bin/bash
+
+gateway=$(route get default | grep gateway | awk '{print $2}')
+
+adb connect $gateway
+
