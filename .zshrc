@@ -1,5 +1,7 @@
 # zsh autocompletions setup
-fpath+=("/opt/homebrew/share/zsh/site-functions")
+#
+# for docker run: docker completion zsh > ~/.zsh/completion/_docker
+fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit
 compinit
 
