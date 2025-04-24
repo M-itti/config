@@ -1,0 +1,24 @@
+# This is Git's per-user configuration file.
+[user]
+	name = M-itti
+	email = mahdlinux@gmail.com
+# Please adapt and uncomment the following lines:
+#	name = MacBook Pro
+#	email = macbookpro@MacBooks-MacBook-Pro.local
+[alias]
+	l = log
+	s = status
+	d = diff
+	co = checkout
+	b = branch
+	c = checkout
+	q = "!f() { \
+	branch=$(git symbolic-ref --short HEAD); \
+	if [ \"$branch\" = \"main\" ] || [ \"$branch\" = \"master\" ]; then \
+		echo \"🚫 Aborting: You are on the $branch branch!\"; \
+		exit 1; \
+	fi; \
+	git add . && \
+	git commit -am \"Auto: $(date '+%Y-%m-%d %H:%M:%S')\" && \
+	git push origin \"$branch\"; \
+	}; f"
