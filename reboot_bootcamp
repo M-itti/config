@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Find BOOTCAMP partition
+bootcamp_disk=$(diskutil list | grep "Microsoft Basic Data" | awk '{print $NF}')
+
+if [ -z "$bootcamp_disk" ]; then
+  echo "❌ Could not find Boot Camp partition."
+  exit 1
+fi
+
+echo "✅ Found Boot Camp partition at /dev/$bootcamp_disk"
+
+# Mount it
+echo "🔧 Mounting..."
+sudo diskutil mount /dev/$bootcamp_disk
+
+# Get the mount path
+mount_path=$(mount | grep "/dev/$bootcamp_disk" | awk '{print $3}')
+
+if [ -z "$mount_path" ]; then
+  echo "❌ Failed to mount Boot Camp partition."
+  exit 1
+fi
+
+echo "📂 Mounted at $mount_path"
+
+# Set next boot to Boot Camp
+echo "🧭 Blessing Windows volume for next boot..."
+sudo bless --mount "$mount_path" --setBoot --nextonly
+
+# Reboot
+echo "🔁 Rebooting into Windows..."
+sudo reboot
