@@ -1,0 +1,13 @@
+# https://bridges.torproject.org/bridges?transport=obfs4 
+UseBridges 1
+ClientTransportPlugin obfs4 exec /usr/local/bin/obfs4proxy
+
+# change listen port
+# SocksPort 127.0.0.1:9040 
+
+ExitNodes {de}
+
+StrictNodes 1
+
+# ex
+# Bridge obfs4 192.210.136.211:5679 C92B2E1C89785721F2419F0E07622370AF07C84E cert=BggkKmfztggfgKGwF+LiHwhm6ps9aMOHqJdfYp0MVaFHPq4MtYbf/QbQZReARuxU4HQzQg iat-mode=0

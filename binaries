@@ -1,0 +1,31 @@
+
+
+
+#### MACOS ####
+
+# small
+tree
+git
+tmux
+blueutil
+htop
+sshpass
+docker
+docker-compose
+calc
+speedtest-cli
+docker-completion
+gh
+mongosh
+redis
+sqlite
+zsh-completions
+zsh-autosuggestions
+tldr
+
+# big 
+go
+python3
+node
+colima
+
