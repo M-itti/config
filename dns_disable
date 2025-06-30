@@ -1,0 +1,8 @@
+#!/bin/bash
+
+SERVICE="Wi-Fi"
+
+# Set DNS servers to empty to revert to automatic (DHCP)
+sudo networksetup -setdnsservers "$SERVICE" "empty"
+
+echo "DNS servers reset to automatic for $SERVICE"
