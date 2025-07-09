@@ -1,3 +1,0 @@
-#!/bin/bash
-
-adb shell getevent -lt | grep -E "ABS_MT_POSITION_X|ABS_MT_POSITION_Y|BTN_TOUCH"
