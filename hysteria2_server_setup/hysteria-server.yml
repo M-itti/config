@@ -1,0 +1,121 @@
+---
+- name: Setup Hysteria v2 on Ubuntu
+  hosts: hysteria_servers
+  become: true
+  vars:
+    hysteria_bin_path: /usr/local/bin/hysteria
+    hysteria_config_dir: /etc/hysteria
+    hysteria_config_file: "{{ hysteria_config_dir }}/config.yaml"
+    hysteria2_tls_dir: /etc/hysteria2
+    hysteria2_cert: "{{ hysteria2_tls_dir }}/cert.pem"
+    hysteria2_key: "{{ hysteria2_tls_dir }}/key.pem"
+    openssl_days: 365
+    openssl_subj: "/CN={{ ansible_fqdn | default('hysteria') }}"
+  tasks:
+
+    - name: Ensure DNS 1.1.1.1 is first in resolv.conf
+      lineinfile:
+        path: /etc/resolv.conf
+        line: "nameserver 1.1.1.1"
+        insertafter: BOF
+        state: present
+
+    - name: Ensure DNS 8.8.4.4 is second in resolv.conf
+      lineinfile:
+        path: /etc/resolv.conf
+        line: "nameserver 8.8.4.4"
+        insertafter: "nameserver 1.1.1.1"
+        state: present
+
+    - name: Ensure apt cache is updated (Ubuntu)
+      apt:
+        update_cache: yes
+        upgrade: no
+      when: ansible_os_family == "Debian"
+
+    - name: Install git
+      apt:
+        name: git
+        state: present
+        update_cache: yes
+
+    - name: Clone config repo
+      git:
+        repo: https://github.com/M-itti/config.git
+        dest: /tmp/config
+        version: main  # optional, default is the default branch
+        force: yes     # overwrites existing files if repo already exists
+
+    - name: Install curl
+      apt:
+        name: curl
+        state: present
+
+    - name: Ensure hysteria config directory exists
+      file:
+        path: "{{ hysteria_config_dir }}"
+        state: directory
+        mode: '0755'
+        owner: hysteria
+        group: hysteria
+
+    - name: Copy local config.yaml to target /etc/hysteria/config.yaml
+      copy:
+        src: config.yaml
+        dest: "{{ hysteria_config_file }}"
+        owner: hysteria
+        group: hysteria
+        mode: '0640'
+
+    - name: Create /etc/hysteria2 for TLS files
+      file:
+        path: "{{ hysteria2_tls_dir }}"
+        state: directory
+        mode: '0755'
+        owner: hysteria
+        group: hysteria
+    
+    - name: Install Hysteria using official installer (idempotent)
+      shell: bash <(curl -fsSL https://get.hy2.sh/)
+      args:
+        executable: /bin/bash
+        creates: "{{ hysteria_bin_path }}"
+      environment:
+        DEBIAN_FRONTEND: noninteractive
+
+    - name: Ensure hysteria binary is executable (safety)
+      file:
+        path: "{{ hysteria_bin_path }}"
+        mode: '0755'
+        owner: root
+        group: root
+
+    - name: Generate self-signed TLS key and certificate if missing
+      block:
+        - name: Generate private key (if missing)
+          command: >
+            openssl genpkey -algorithm RSA -out "{{ hysteria2_key }}" -pkeyopt rsa_keygen_bits:2048
+          args:
+            creates: "{{ hysteria2_key }}"
+
+        - name: Generate self-signed certificate (if missing)
+          command: >
+            openssl req -new -x509 -key "{{ hysteria2_key }}" -out "{{ hysteria2_cert }}"
+            -days "{{ openssl_days }}" -subj "{{ openssl_subj }}"
+          args:
+            creates: "{{ hysteria2_cert }}"
+
+        - name: Set permissions on TLS files
+          file:
+            path: "{{ item.path }}"
+            owner: hysteria
+            group: hysteria
+            mode: "{{ item.mode }}"
+          loop:
+            - { path: "{{ hysteria2_key }}", mode: "0600" }
+            - { path: "{{ hysteria2_cert }}", mode: "0644" }
+
+    - name: Ensure systemd daemon reload (if a service was installed by installer)
+      systemd:
+        daemon_reload: yes
+      changed_when: false

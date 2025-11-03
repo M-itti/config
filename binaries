@@ -22,6 +22,12 @@ sqlite
 zsh-completions
 zsh-autosuggestions
 tldr
+watch
+unp
+magic-wormhole
+moreutils
+colordiff
+ansible
 
 # big 
 go

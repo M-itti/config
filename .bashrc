@@ -43,15 +43,18 @@ alias ze="zed"
 
 # others
 alias g="git"
-alias ls="ls -aG" 
+#alias ls="ls -aG" 
 
 # personalized socks config (all_proxy added)
 
 #ip_section=$(route get default | grep gateway | awk '{print $2}')
 #export all_proxy=socks5://$ip_section:2080
-#export all_proxy=http://127.0.0.1:2334
+#export NO_PROXY=localhost,127.0.0.1,10.96.0.0/12,192.168.59.0/24,192.168.49.0/24,192.168.39.0/24
 
-#unset http_proxy HTTP_PROXY https_proxy HTTPS_PROXY ftp_proxy FTP_PROXY socks_proxy SOCKS_PROXY all_proxy ALL_PROXY
+#export http_proxy="http://10.199.93.208:10809"
+#export https_proxy="http://10.199.93.208:10809"
+
+unset http_proxy HTTP_PROXY https_proxy HTTPS_PROXY ftp_proxy FTP_PROXY socks_proxy SOCKS_PROXY all_proxy ALL_PROXY
 
 export NO_PROXY=localhost
 
@@ -59,3 +62,6 @@ export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
 
 export GOPROXY=https://goproxy.io
+
+# tldr disable update
+export TLDR_AUTO_UPDATE_DISABLED=1

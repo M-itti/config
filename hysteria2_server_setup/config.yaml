@@ -1,0 +1,25 @@
+---
+listen: ":8443"
+
+auth:
+  type: password
+  password: yourpasswordhere
+
+tls:
+  cert: "/etc/hysteria2/cert.pem"
+  key: "/etc/hysteria2/key.pem"
+
+masquerade:
+  type: proxy
+  proxy:
+    url: "https://google.com"
+    rewriteHost: true
+
+socks5:
+  listen: "127.0.0.1:4003"
+
+up_mbps: 50
+down_mbps: 50
+
+speedtest: True
+
