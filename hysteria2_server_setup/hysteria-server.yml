@@ -18,12 +18,20 @@
         update_cache: yes
         upgrade: no
       when: ansible_os_family == "Debian"
+      register: update_result
+      retries: 10
+      delay: 30
+      until: update_result is success
 
     - name: Install git
       apt:
         name: git
         state: present
         update_cache: yes
+      register: git_result
+      retries: 10
+      delay: 30
+      until: git_result is success
 
     - name: Clone config repo
       git:
@@ -36,6 +44,11 @@
       package:
         name: vim
         state: present
+      register: vim_result
+      retries: 10
+      delay: 30
+      until: vim_result is success
+
 
     - name: Copy vimrc to /usr/share/vim
       copy:
@@ -58,6 +71,16 @@
         creates: "{{ hysteria_bin_path }}"
       environment:
         DEBIAN_FRONTEND: noninteractive
+
+    - name: Enable Hysteria service at boot
+      systemd:
+        name: hysteria-server
+        enabled: yes
+
+    - name: Start Hysteria service
+      systemd:
+        name: hysteria-server
+        state: started
 
     - name: Ensure hysteria config directory exists
       file:
