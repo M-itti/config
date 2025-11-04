@@ -13,20 +13,6 @@
     openssl_subj: "/CN={{ ansible_fqdn | default('hysteria') }}"
   tasks:
 
-    - name: Ensure DNS 1.1.1.1 is first in resolv.conf
-      lineinfile:
-        path: /etc/resolv.conf
-        line: "nameserver 1.1.1.1"
-        insertafter: BOF
-        state: present
-
-    - name: Ensure DNS 8.8.4.4 is second in resolv.conf
-      lineinfile:
-        path: /etc/resolv.conf
-        line: "nameserver 8.8.4.4"
-        insertafter: "nameserver 1.1.1.1"
-        state: present
-
     - name: Ensure apt cache is updated (Ubuntu)
       apt:
         update_cache: yes
@@ -42,14 +28,36 @@
     - name: Clone config repo
       git:
         repo: https://github.com/M-itti/config.git
-        dest: /tmp/config
+        dest: "{{ ansible_env.HOME }}/config"
         version: main  # optional, default is the default branch
         force: yes     # overwrites existing files if repo already exists
+
+    - name: Install Vim
+      package:
+        name: vim
+        state: present
+
+    - name: Copy vimrc to /usr/share/vim
+      copy:
+        src: "{{ ansible_env.HOME }}/config/vimrc"
+        dest: /usr/share/vim/vimrc
+        owner: root
+        group: root
+        mode: '0644'
+        remote_src: yes
 
     - name: Install curl
       apt:
         name: curl
         state: present
+
+    - name: Install Hysteria using official installer (idempotent)
+      shell: bash <(curl -fsSL https://get.hy2.sh/)
+      args:
+        executable: /bin/bash
+        creates: "{{ hysteria_bin_path }}"
+      environment:
+        DEBIAN_FRONTEND: noninteractive
 
     - name: Ensure hysteria config directory exists
       file:
@@ -75,14 +83,6 @@
         owner: hysteria
         group: hysteria
     
-    - name: Install Hysteria using official installer (idempotent)
-      shell: bash <(curl -fsSL https://get.hy2.sh/)
-      args:
-        executable: /bin/bash
-        creates: "{{ hysteria_bin_path }}"
-      environment:
-        DEBIAN_FRONTEND: noninteractive
-
     - name: Ensure hysteria binary is executable (safety)
       file:
         path: "{{ hysteria_bin_path }}"
