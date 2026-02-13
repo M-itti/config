@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# -------- CONFIG --------
+URL="$1"
+
+if [ -z "$URL" ]; then
+    echo "Usage: $0 <download-url>"
+    exit 1
+fi
+
+MAC_USER="macbookpro"
+MAC_HOST="localhost"
+MAC_PORT=2222
+MAC_DEST="/Users/$MAC_USER/Downloads"
+
+# Use current directory for download
+LOCAL_DIR="$PWD"
+
+# -------- SCRIPT --------
+filename=$(basename "$URL")
+filepath="$LOCAL_DIR/$filename"
+
+# Download the file with aria2c
+echo "Downloading $URL to $filepath..."
+aria2c -d "$LOCAL_DIR" "$URL"
+DOWNLOAD_STATUS=$?
+
+if [ $DOWNLOAD_STATUS -ne 0 ]; then
+    echo "Error: Download failed!"
+    exit 1
+fi
+
+# Transfer the file to Mac using rsync over SSH
+echo "Transferring $filename to $MAC_USER@$MAC_HOST:$MAC_DEST..."
+sshpass -p "1212" rsync -avz -e "ssh -p $MAC_PORT" "$filepath" "$MAC_USER@$MAC_HOST:$MAC_DEST"
+RSYNC_STATUS=$?
+
+if [ $RSYNC_STATUS -eq 0 ]; then
+    echo "File successfully transferred to $MAC_HOST:$MAC_DEST"
+
+    # Remove local file after successful transfer
+    echo "Removing local file $filepath..."
+    rm -f "$filepath"
+else
+    echo "Error: File transfer failed!"
+    exit 1
+fi

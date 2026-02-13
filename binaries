@@ -28,6 +28,8 @@ magic-wormhole
 moreutils
 colordiff
 ansible
+tun2proxy
+yt-dlp
 
 # big 
 go
