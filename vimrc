@@ -84,3 +84,7 @@ augroup PasteMode
   autocmd InsertLeave * set nopaste
 augroup END
 
+" shift + n = end of line instead of shift + l
+" also M = middle of current window and H = top of current window
+nnoremap N L
+nnoremap J H

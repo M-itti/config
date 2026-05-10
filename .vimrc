@@ -89,3 +89,16 @@ set ruler
 set re=2
 
 autocmd FileType python setlocal tabstop=2 shiftwidth=2 expandtab
+
+" shift + n = end of line instead of shift + l
+" also M = middle of current window and H = top of current window
+nnoremap N L
+nnoremap J H
+
+" dont remember the previously highlighted key
+command! Nohh let @/ = '' | nohlsearch
+cnoreabbrev <expr> noh getcmdtype() == ':' && getcmdline() ==# 'noh' ? 'Nohh' : 'noh'
+
+" half page up and half page down
+" ctrl + n is down and ctrl + u is up
+nnoremap <C-n> <C-d>
