@@ -30,7 +30,7 @@ import tempfile
 from pathlib import Path
 
 DEFAULT_PROXYCHAINS_CONF_CANDIDATES = [
-    Path("/usr/local/etc/proxychains.conf",
+    Path("/usr/local/etc/proxychains.conf"),
     Path.home() / ".proxychains" / "proxychains.conf",
     Path("/etc/proxychains4.conf"),
     Path("/etc/proxychains.conf"),
@@ -211,10 +211,6 @@ def main() -> None:
     monitored_conf = build_monitored_config(base_conf, mitm_port)
 
     cmd = [real_bin, "-q", "-f", str(monitored_conf)] + rest
-    print(f"[proxychains4] mitm listening on 127.0.0.1:{mitm_port}",
-          file=sys.stderr)
-    print(f"[proxychains4] using config {monitored_conf}",
-          file=sys.stderr)
 
     os.execv(real_bin, cmd)
 
