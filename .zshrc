@@ -14,7 +14,7 @@ PROMPT='%n@%m %1~ %F{green}${vcs_info_msg_0_}%f %# '
 
 bindkey '^P' up-line-or-history
 bindkey '^N' down-line-or-history
-source .bashrc
+source ~/.bashrc
 export PATH="/usr/local/opt/node@20/bin:$PATH"
 
 # Added by Windsurf
@@ -45,3 +45,21 @@ export PATH="/usr/local/Cellar/mtr/0.96/sbin:$PATH"
 
 # 1 month delay for brew auto-update
 export HOMEBREW_AUTO_UPDATE_SECS=2592000
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform
+
+# Added by Antigravity
+export PATH="/Users/macbookpro/.antigravity/antigravity/bin:$PATH"
+
+# Added by Hugging Face CLI installer
+export PATH="/Users/macbookpro/.local/bin:$PATH"
+
+# opencode
+export PATH=/Users/macbookpro/.opencode/bin:$PATH
+
+# curl brew http3 version
+export PATH="/usr/local/opt/curl/bin:$PATH"
+
+# OpenClaw Completion
+[ -f "/Users/macbookpro/.openclaw/completions/openclaw.zsh" ] && source "/Users/macbookpro/.openclaw/completions/openclaw.zsh"

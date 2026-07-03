@@ -22,6 +22,7 @@ alias n="npm"
 
 # python
 alias python='python3'
+alias p='python3'
 alias pip='pip3'
 alias pytest='python -m pytest'
 
@@ -41,9 +42,13 @@ alias sqlite="sqlite3"
 # zed
 alias ze="zed"
 
-# others
+# misc
 alias g="git"
+alias o="opencode"
+
 #alias ls="ls -aG" 
+export GEMINI_NO_ANALYTICS=1
+export GEMINI_NO_UPDATE_NOTIFIER=1
 
 # personalized socks config (all_proxy added)
 
@@ -57,6 +62,10 @@ alias g="git"
 unset http_proxy HTTP_PROXY https_proxy HTTPS_PROXY ftp_proxy FTP_PROXY socks_proxy SOCKS_PROXY all_proxy ALL_PROXY
 
 export NO_PROXY=localhost
+export HTTP_PROXY=http://127.0.0.1:8118
+export HTTPS_PROXY=http://127.0.0.1:8118
+export SOCKS_PROXY=http://127.0.0.1:1080
+
 
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
@@ -65,3 +74,8 @@ export GOPROXY=https://goproxy.io
 
 # tldr disable update
 export TLDR_AUTO_UPDATE_DISABLED=1
+. "$HOME/.cargo/env"
+
+# deno
+export PATH="/Users/macbookpro/.deno/bin:$PATH"
+
