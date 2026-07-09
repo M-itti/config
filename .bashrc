@@ -31,7 +31,18 @@ alias grep='grep --color=auto'
 alias ls='ls --color=auto'
 alias l='ls'
 alias share='python3 -m http.server 9000'
-alias src="source venv/bin/activate"
+
+# activte with uv or pip-venv
+src() {
+    if [ -d "venv" ]; then
+        source venv/bin/activate
+    elif [ -d ".venv" ]; then
+        source .venv/bin/activate
+    else
+        echo "No virtual environment found (venv or .venv)"
+        return 1
+    fi
+}
 
 # g++
 alias g++='clang++ -std=c++17 -O0'
@@ -64,7 +75,7 @@ unset http_proxy HTTP_PROXY https_proxy HTTPS_PROXY ftp_proxy FTP_PROXY socks_pr
 export NO_PROXY=localhost
 export HTTP_PROXY=http://127.0.0.1:8118
 export HTTPS_PROXY=http://127.0.0.1:8118
-export SOCKS_PROXY=http://127.0.0.1:1080
+export ALL_PROXY=socks5://127.0.0.1:1080
 
 
 export PATH=$PATH:/usr/local/go/bin
